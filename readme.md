@@ -1,6 +1,6 @@
 # Coding Challenge Transactions List
 
-This file contains screenshots of the final solution of the coding task for Colony as well documentation going through each point from the task and explaining the solution and reason behind it.
+This file contains screenshots of the final solution of the coding task for Colony as well as a documentation going through each point from the task and explaining the solution and reason behind it.
 
 
 ## Desktop
