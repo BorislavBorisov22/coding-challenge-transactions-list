@@ -51,7 +51,7 @@ https://github.com/BorislavBorisov22/coding-challenge-transactions-list/assets/2
 https://github.com/BorislavBorisov22/coding-challenge-transactions-list/assets/20156662/fa51e317-2064-4527-9340-0774d0c68e81
 
 
-7. **UI**
+6. **UI**
 
  Investigating the issue it seemed it could be solved in a lot of ways - the simplest would be to remove the `hidden` class which was only applied for devices below `sm` and would hide the button. But looking further it seemed the intention was not to just show the `connect` button at all times but rather hide it in a toggleable menu for mobile by using the tailwind utility classes for collapse expand functionality. This required to include an addtional `@preline/collapse` package in order to work properly and also adding a toggle button inside the navigation component that would only be visible for mobile devices (below `sm`).
 
@@ -60,13 +60,13 @@ https://github.com/BorislavBorisov22/coding-challenge-transactions-list/assets/2
 https://github.com/BorislavBorisov22/coding-challenge-transactions-list/assets/20156662/12102714-59ff-4396-b1e6-9a1651a9ee10
 
 
-8. **Human Readable Values**
+7. **Human Readable Values**
  
  For the formatting I introduced a new `EthersFormtter` component that utilises the `ethers` library and allows converting from any ethereum unit to another. Then I used that component on both the transaction list and the single transaction page. It could have been just a utility function instead of a component but I find it easy to use this way.
 
 <img width="855" alt="image" src="https://github.com/BorislavBorisov22/coding-challenge-transactions-list/assets/20156662/7a1238b2-a735-4c0d-876a-559e14e59142">
 
-9. **Other improvements**
+8. **Other improvements**
 
    9.1 Fixed the `Transactions List` title link to lead to the transactions list page instead of getting to a 404 page.
    
