@@ -4,6 +4,7 @@ import SendTransaction from "./SendTransaction";
 import { useDispatch } from "../store/store";
 import { Actions } from "../types";
 import { useSelector } from "../store/store";
+import { navigate } from "./NaiveRouter";
 
 const Navigation: React.FC = () => {
   const dispatch = useDispatch();
@@ -22,6 +23,10 @@ const Navigation: React.FC = () => {
           <a
             className="flex-none text-xl font-semibold dark:text-white"
             href="."
+            onClick={(ev) => {
+              ev.preventDefault();
+              navigate("/transactions");
+            }}
           >
             Transactions List
           </a>
