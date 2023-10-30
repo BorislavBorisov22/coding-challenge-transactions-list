@@ -22,6 +22,7 @@ export enum Actions {
   SendTransaction = "SEND_TRANSACTION",
   ConnectWallet = "CONNECT_WALLET",
   ConnectWalletSuccess = "CONNECT_WALLET_SUCCESS",
+  SetTransactionModalState = "SET_TRANSACTION_MODAL_STATE",
 }
 
 export type ReduxAction<TType extends Actions, TPayload> = {
@@ -43,7 +44,16 @@ type ConnectWalletSuccessAction = ReduxAction<
   { address: string }
 >;
 
+type SetTransactionModalState = ReduxAction<
+  Actions.SetTransactionModalState,
+  {
+    isOpen?: boolean;
+    loading?: boolean;
+  }
+>;
+
 export type Action =
   | SendTransactionAction
+  | SetTransactionModalState
   | ConnectWalletAction
   | ConnectWalletSuccessAction;
