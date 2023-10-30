@@ -6,6 +6,7 @@ https://github.com/BorislavBorisov22/coding-challenge-transactions-list/assets/2
 
 
 - Mobile
-https://github.com/BorislavBorisov22/coding-challenge-transactions-list/assets/20156662/ef2d32df-0490-4e2b-a7f3-c52ee8f672f5
+
+https://github.com/BorislavBorisov22/coding-challenge-transactions-list/assets/20156662/6b227c99-eb18-4f45-9506-d0790756fa09
 
 
