@@ -17,11 +17,33 @@ export interface SingleTransactionData {
   getTransaction: Transaction;
 }
 
-export type Action<P> = {
-  type: Actions,
-  payload: P,
+// Redux related types
+export enum Actions {
+  SendTransaction = "SEND_TRANSACTION",
+  ConnectWallet = "CONNECT_WALLET",
+  ConnectWalletSuccess = "CONNECT_WALLET_SUCCESS",
+}
+
+export type ReduxAction<TType extends Actions, TPayload> = {
+  type: TType;
+  payload: TPayload;
 };
 
-export enum Actions {
-  SendTransaction = 'SEND_TRANSACTION',
-};
+export type SendTransactionAction = ReduxAction<
+  Actions.SendTransaction,
+  {
+    recipientAddress: string;
+    amountInEth: number;
+  }
+>;
+type ConnectWalletAction = ReduxAction<Actions.ConnectWallet, {}>;
+
+type ConnectWalletSuccessAction = ReduxAction<
+  Actions.ConnectWalletSuccess,
+  { address: string }
+>;
+
+export type Action =
+  | SendTransactionAction
+  | ConnectWalletAction
+  | ConnectWalletSuccessAction;

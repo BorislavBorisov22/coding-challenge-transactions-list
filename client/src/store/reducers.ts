@@ -1,16 +1,25 @@
-// Define the state type
+import { Action, Actions, Transaction } from "../types";
+
+type WalletState = { address: string } | null;
+
 export interface RootState {
-  transactions: any[];
+  transactions: Transaction[];
+  wallet: WalletState;
 }
 
 // Initial state
 const initialState: RootState = {
-  transactions: []
+  transactions: [],
+  wallet: null,
 };
 
-const reducer = (state = initialState, action: any): RootState => {
+const reducer = (state = initialState, action: Action): RootState => {
   switch (action.type) {
-    // Define your actions
+    case Actions.ConnectWalletSuccess:
+      return {
+        ...state,
+        wallet: action.payload,
+      };
     default:
       return state;
   }

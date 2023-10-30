@@ -1,38 +1,19 @@
-import React, { useCallback, useState } from "react";
-import Onboard, { WalletState } from "@web3-onboard/core";
-import injectedModule from "@web3-onboard/injected-wallets";
+import React, { useCallback } from "react";
 
 import SendTransaction from "./SendTransaction";
-
-const injected = injectedModule();
-
-const onboard = Onboard({
-  wallets: [injected],
-  chains: [
-    {
-      id: "123456",
-      token: "ETH",
-      label: "Local Ganache",
-      rpcUrl: "http://localhost:8545",
-    },
-  ],
-});
+import { useDispatch } from "../store/store";
+import { Actions } from "../types";
+import { useSelector } from "../store/store";
 
 const Navigation: React.FC = () => {
-  const [wallet, setWallet] = useState<WalletState>();
+  const dispatch = useDispatch();
+  const walletAddress = useSelector<string | null>(
+    (state) => state.wallet?.address ?? null
+  );
 
-  const handleConnect = useCallback(async () => {
-    const wallets = await onboard.connectWallet();
-
-    const [metamaskWallet] = wallets;
-
-    if (
-      metamaskWallet.label === "MetaMask" &&
-      metamaskWallet.accounts[0].address
-    ) {
-      setWallet(metamaskWallet);
-    }
-  }, []);
+  const handleConnect = useCallback(() => {
+    dispatch({ type: Actions.ConnectWallet });
+  }, [dispatch]);
 
   return (
     <header className="flex flex-wrap sm:justify-start sm:flex-nowrap z-50 w-ful text-sm py-4 bg-gray-800">
@@ -45,17 +26,17 @@ const Navigation: React.FC = () => {
             Transactions List
           </a>
         </div>
-        <div className="hs-collapse hidden overflow-hidden transition-all duration-300 basis-full grow sm:block">
+        <div className="hs-collapse overflow-hidden transition-all duration-300 basis-full grow sm:block">
           <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-end sm:mt-0 sm:pl-5">
-            {wallet && (
+            {walletAddress && (
               <>
                 <SendTransaction />
                 <p className="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border-2 border-gray-200 font-semibold text-gray-200 text-sm">
-                  {wallet.accounts[0].address}
+                  {walletAddress}
                 </p>
               </>
             )}
-            {!wallet && (
+            {!walletAddress && (
               <button
                 type="button"
                 onClick={handleConnect}

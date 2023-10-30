@@ -1,4 +1,4 @@
-import { takeEvery } from "redux-saga/effects";
+import { put, takeEvery } from "redux-saga/effects";
 import {
   JsonRpcProvider,
   Transaction,
@@ -7,6 +7,8 @@ import {
   BrowserProvider,
   Signer,
 } from "ethers";
+import injectedModule from "@web3-onboard/injected-wallets";
+import Onboard from "@web3-onboard/core";
 
 import apolloClient from "../apollo/client";
 import { Actions } from "../types";
@@ -62,10 +64,45 @@ function* sendTransaction() {
       variables,
     });
   } catch (error) {
-    //
+    alert(JSON.stringify(error));
+  }
+}
+
+function* connectWallet() {
+  // injected module from injected wallets allows onboard to detect browser injected wallets such as metamask
+  // found by the error and then looking into the injected wallets docs - https://onboard.blocknative.com/docs/wallets/injected
+
+  const injected = injectedModule();
+
+  const onboard = Onboard({
+    wallets: [injected],
+    chains: [
+      {
+        id: "123456",
+        token: "ETH",
+        label: "Local Ganache",
+        rpcUrl: "http://localhost:8545",
+      },
+    ],
+  });
+
+  // @ts-ignore
+  const wallets = yield onboard.connectWallet();
+
+  const [metamaskWallet] = wallets;
+
+  if (
+    metamaskWallet.label === "MetaMask" &&
+    metamaskWallet.accounts[0].address
+  ) {
+    yield put({
+      type: Actions.ConnectWalletSuccess,
+      payload: { address: metamaskWallet.accounts[0].address },
+    });
   }
 }
 
 export function* rootSaga() {
   yield takeEvery(Actions.SendTransaction, sendTransaction);
+  yield takeEvery(Actions.ConnectWallet, connectWallet);
 }
