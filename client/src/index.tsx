@@ -8,6 +8,7 @@ import client from "./apollo/client";
 
 import "./index.css";
 import "@preline/overlay";
+import "@preline/collapse";
 
 import App from "./App";
 

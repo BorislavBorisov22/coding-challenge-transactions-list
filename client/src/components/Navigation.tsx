@@ -5,6 +5,7 @@ import { useDispatch } from "../store/store";
 import { Actions } from "../types";
 import { useSelector } from "../store/store";
 import { navigate } from "./NaiveRouter";
+import { ToggleIcon } from "./ToggleIcon";
 
 const Navigation: React.FC = () => {
   const dispatch = useDispatch();
@@ -30,8 +31,21 @@ const Navigation: React.FC = () => {
           >
             Transactions List
           </a>
+          <button
+            type="button"
+            className="hs-collapse-toggle sm:hidden py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800"
+            id="app-main-actions-collapse"
+            data-hs-collapse="#app-main-actions"
+          >
+            <ToggleIcon />
+          </button>
         </div>
-        <div className="hs-collapse overflow-hidden transition-all duration-300 basis-full grow sm:block">
+
+        <div
+          id="app-main-actions"
+          className="hs-collapse hidden overflow-hidden mt-10 transition-all duration-300 basis-full grow sm:block sm:mt-0"
+          aria-labelledby="app-main-actions-toggle"
+        >
           <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-end sm:mt-0 sm:pl-5">
             {walletAddress && (
               <>
