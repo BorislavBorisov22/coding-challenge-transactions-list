@@ -74,7 +74,6 @@ function* sendTransaction({ payload }: SendTransactionAction) {
 function* connectWallet() {
   // injected module from injected wallets allows onboard to detect browser injected wallets such as metamask
   // found by the error and then looking into the injected wallets docs - https://onboard.blocknative.com/docs/wallets/injected
-
   const injected = injectedModule();
 
   const onboard = Onboard({

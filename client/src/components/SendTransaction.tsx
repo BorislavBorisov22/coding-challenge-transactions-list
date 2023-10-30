@@ -79,6 +79,7 @@ const SendTransaction: React.FC = () => {
     });
   }, [dispatch]);
 
+  // We don't want to allow the users to submit a transaction if a previous one has not finished yet or the form is invalid
   const isSubmitDisabled = transactionModal.loading || !isFormValid;
 
   return (

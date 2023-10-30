@@ -13,6 +13,8 @@ const Navigation: React.FC = () => {
     (state) => state.wallet?.address ?? null
   );
 
+  // Moved all of the logic for connecting to the store inside redux store and the side effect as a saga, this way we have a
+  // consistent way of handling side effects and also can access the connected walled from anywhere in the app just by reading the redux state
   const handleConnect = useCallback(() => {
     dispatch({ type: Actions.ConnectWallet });
   }, [dispatch]);
