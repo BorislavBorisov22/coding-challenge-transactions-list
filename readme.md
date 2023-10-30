@@ -75,5 +75,7 @@ https://github.com/BorislavBorisov22/coding-challenge-transactions-list/assets/2
    9.3 Introduced type safe version of `useDispatch` and `useSelector` where we would have type safety and be sure to only dispatch valid actions and access valid state fields.
    
    9.4 Remove repetitive code for configuring the redux store. Inside `src/index.ts` the same logic that lives in `store/store.ts` was used but the `store.ts` code was not imported anywhere so I got rid of the `index.ts` code that was configuring the store and directly imported the configured store from `store/store.ts`  
-   9.5 (not implmented but a suggestion) Extract constants for all the copy/text instead of it being hardcoded.
-   9.6 (not implmented but a great suggestion)Update sagas to yield function calls by `yield call(someFn, ...args)` so that the sagas become a lot more testable without additional mock setup) and there seem to be some async tasks that do not depend on each other and could be run in parallel and awaited together.
+
+   9.5 (not implemented but a suggestion) Extract constants for all the copy/text instead of it being hardcoded.
+
+   9.6 (not implemented but a suggestion) Update sagas to yield function calls by `yield call(someFn, ...args)` so that the sagas become a lot more testable without additional mock setup) and there seem to be some async tasks that do not depend on each other and could be run in parallel and awaited together.
